@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  kanbanDB:
+    image: postgres:15.3
+    container_name: kanban-db
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
