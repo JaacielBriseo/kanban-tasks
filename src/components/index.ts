@@ -1,1 +1,3 @@
-export { Navbar } from './ui/Navbar';
+export { BoardsListCards } from './kanban/BoardsListCards';
+
+export { Navbar } from './ui/navbar/Navbar';

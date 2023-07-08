@@ -15,8 +15,47 @@ export async function GET(request: Request) {
 				name: 'test1',
 				boards: {
 					create: [
-						{ name: slugify.convertToSlug('Lanzar portfolio') },
-						{ name: slugify.convertToSlug('Diseñar UI') },
+						{
+							name: slugify.convertToSlug('Lanzar portfolio'),
+						},
+						{
+							name: slugify.convertToSlug('Diseñar UI'),
+							columns: {
+								create: [
+									{
+										name: 'Todo',
+										tasks: {
+											create: [
+												{
+													title: 'Build UI for onboarding flow',
+													description: 'Not Empty Description',
+													status: 'Todo',
+													subtasks: { create: [{ isCompleted: true, title: 'Subtask1' }] },
+												},
+												{
+													title: 'Build UI for search',
+													description: 'Not Empty Description',
+													status: 'Todo',
+													subtasks: { create: [{ isCompleted: false, title: 'Subtask2' }] },
+												},
+												{
+													title: 'Build settings UI',
+													description: 'Not Empty Description',
+													status: 'Todo',
+													subtasks: { create: [{ isCompleted: false, title: 'Subtask3' }] },
+												},
+											],
+										},
+									},
+									{
+										name: 'Done',
+									},
+									{
+										name: 'Doing',
+									},
+								],
+							},
+						},
 						{ name: slugify.convertToSlug('Elegir CSS') },
 					],
 				},
