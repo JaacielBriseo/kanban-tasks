@@ -13,7 +13,7 @@ export const Navbar = async () => {
 	const userBoards = await prisma.board.findMany({ where: { userId: user.id }, select: { name: true } });
 	// console.log({ userBoards });
 	return (
-		<nav className='w-full h-16 bg-white p-5 flex items-center justify-between'>
+		<nav className='w-full h-16 bg-white p-5 flex items-center justify-between dark:bg-DarkGrey transition-colors duration-700'>
 			<div className='flex items-center gap-5 w-1/2'>
 				<Image src={'/assets/logo-mobile.svg'} alt='Kanban Logo' width={24} height={24} />
 				<ActiveBoardName />

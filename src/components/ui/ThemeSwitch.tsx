@@ -1,15 +1,21 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 type ValidThemes = 'dark' | 'light';
 
 export const ThemeSwitch = () => {
 	const [theme, setTheme] = useState<ValidThemes>(() => {
-		const themeInStorage = localStorage.getItem('theme') as ValidThemes;
-		if (!themeInStorage) return 'light';
-		return themeInStorage;
+		//! error ReferenceError: localStorage is not defined
+		//* Try-Catch block to avoid error on console
+		try {
+			const themeInStorage = localStorage.getItem('theme') as ValidThemes;
+			if (!themeInStorage) return 'light';
+			return themeInStorage;
+		} catch (error) {
+			return 'light';
+		}
 	});
 
 	useEffect(() => {
@@ -20,7 +26,7 @@ export const ThemeSwitch = () => {
 	}, [theme]);
 
 	return (
-		<div className='w-full bg-LightGrey flex items-center justify-center gap-2 h-12 dark:bg-DarkGrey'>
+		<div className='w-full bg-LightGrey flex items-center justify-center gap-2 h-14 dark:bg-VeryDarkGrey transition-colors duration-700 rounded-lg '>
 			<Image src={'/assets/icon-light-theme.svg'} alt='Sun Icon' width={20} height={20} />
 			<div
 				onClick={() => setTheme(current => (current === 'dark' ? 'light' : 'dark'))}
