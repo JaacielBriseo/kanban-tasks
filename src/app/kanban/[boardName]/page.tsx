@@ -1,36 +1,10 @@
-import { getUserSessionServer } from '@/actions/auth/auth-actions';
-import prisma from '@/lib/prisma';
-import { notFound, redirect } from 'next/navigation';
-
+import { getBoardByName } from '@/actions/kanban/kanban-actions';
+import { TaskCard } from '@/components';
 interface Props {
 	params: { boardName: string };
 }
 export default async function BoardPage({ params }: Props) {
-	const user = await getUserSessionServer();
-
-	const board = await prisma.board.findFirst({
-		where: { name: params.boardName, userId: user.id },
-		select: {
-			columns: {
-				select: {
-					id: true,
-					name: true,
-					tasks: {
-						select: {
-							description: true,
-							id: true,
-							status: true,
-							title: true,
-							subtasks: { select: { isCompleted: true } },
-						},
-					},
-				},
-			},
-		},
-	});
-	if (!board) {
-		notFound();
-	}
+	const board = await getBoardByName(params.boardName);
 	return (
 		<div className='p-5'>
 			<div className='flex gap-5'>
@@ -41,14 +15,11 @@ export default async function BoardPage({ params }: Props) {
 						</p>
 						<ul className='space-y-5'>
 							{col.tasks.map(task => (
-								<li
+								<TaskCard
 									key={task.id}
-									className='flex flex-col gap-2 p-5 shadow-md rounded-lg bg-white w-[280px] min-h-[88px]'>
-									<h1 className='font-bold text-[15px]'>{task.title}</h1>
-									<p className='font-bold text-xs text-MediumGrey tracking-wide'>
-										{task.subtasks.filter(sub => sub.isCompleted).length} of {task.subtasks.length} subtasks
-									</p>
-								</li>
+									task={task}
+									statusOptions={board.columns.map(col => ({ columnName: col.name, columnId: col.id }))}
+								/>
 							))}
 						</ul>
 					</div>
