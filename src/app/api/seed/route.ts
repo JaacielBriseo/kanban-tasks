@@ -17,9 +17,6 @@ export async function GET(request: Request) {
 					create: [
 						{
 							name: slugify.convertToSlug('Lanzar portfolio'),
-						},
-						{
-							name: slugify.convertToSlug('Diseñar UI'),
 							columns: {
 								create: [
 									{
@@ -55,6 +52,9 @@ export async function GET(request: Request) {
 									},
 								],
 							},
+						},
+						{
+							name: slugify.convertToSlug('Diseñar UI'),
 						},
 						{ name: slugify.convertToSlug('Elegir CSS') },
 					],

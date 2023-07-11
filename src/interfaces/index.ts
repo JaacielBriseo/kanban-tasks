@@ -1,5 +1,6 @@
 export enum ValidModalsEnum {
 	AddNewBoardModal = 'add_new_board_modal',
+	AddNewTaskModal = 'add_new_task_modal',
 	SelectBoardModal = 'select_board_modal',
 	ViewTaskModal = 'view_task_modal',
 }

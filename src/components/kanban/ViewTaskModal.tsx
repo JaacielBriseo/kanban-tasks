@@ -35,7 +35,7 @@ export const ViewTaskModal = ({ task, isOpen, closeModalHandler, statusOptions }
 								<label
 									onClick={() => onToggleSubtask(sub.id, sub.isCompleted)}
 									key={sub.id}
-									className='flex w-full bg-LightGrey p-5 items-center gap-5'>
+									className='flex w-full bg-LightGrey p-5 items-center gap-5 rounded-lg'>
 									<input
 										type='checkbox'
 										checked={sub.isCompleted}

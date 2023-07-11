@@ -14,7 +14,7 @@ export const SelectBoardModal = ({ boards }: Props) => {
 	const activeBoard = useSelectedLayoutSegment();
 
 	return (
-		<dialog id={ValidModalsEnum.SelectBoardModal} className='modal w-[375px] mx-auto transition-none'>
+		<dialog id={ValidModalsEnum.SelectBoardModal} className='modal transition-none'>
 			<form method='dialog' className='modal-box space-y-5 dark:bg-DarkGrey transition-colors duration-700'>
 				<h3 className='font-bold text-sm uppercase tracking-widest text-MediumGrey'>All boards ({boards.length})</h3>
 				<ul className='flex flex-col'>

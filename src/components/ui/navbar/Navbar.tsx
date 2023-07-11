@@ -5,6 +5,7 @@ import prisma from '@/lib/prisma';
 import { getUserSessionServer } from '@/actions/auth/auth-actions';
 import { ActiveBoardName } from './ActiveBoardName';
 import { SelectBoardModal } from './SelectBoardModal';
+import { TriggerAddNewTaskModal } from '@/components/kanban/TriggerAddNewTaskModal';
 
 export const Navbar = async () => {
 	const user = await getUserSessionServer();
@@ -19,9 +20,7 @@ export const Navbar = async () => {
 			</Link>
 			<ActiveBoardName />
 			<div className='flex items-center gap-5'>
-				<div className='bg-MainPurple w-12 h-8 rounded-full flex items-center justify-center'>
-					<Image src={'/assets/icon-add-task-mobile.svg'} alt='Add Task Cross' width={15} height={15} />
-				</div>
+				<TriggerAddNewTaskModal />
 				<Image src={'/assets/icon-vertical-ellipsis.svg'} alt='Elipsis' width={4} height={16} />
 			</div>
 			<SelectBoardModal boards={userBoards} />

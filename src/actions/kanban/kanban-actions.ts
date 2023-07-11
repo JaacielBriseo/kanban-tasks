@@ -26,6 +26,7 @@ export const toggleSubtaskCompleted = async (subtaskId: string, complete: boolea
 		},
 	});
 
+	// TODO: This is throwing not found when using in SubtaskToggler client component
 	revalidatePath('/kanban');
 	return subtask;
 };
