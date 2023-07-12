@@ -28,12 +28,12 @@ export const TaskCard = ({ task, statusOptions }: Props) => {
 					{task.subtasks.filter(sub => sub.isCompleted).length} of {task.subtasks.length} subtasks
 				</p>
 			</Link>
-			<ViewTaskModal
+			{/* <ViewTaskModal
 				statusOptions={statusOptions}
 				task={task}
 				isOpen={isViewTaskModalOpen}
 				closeModalHandler={closeModal}
-			/>
+			/> */}
 		</>
 	);
 };

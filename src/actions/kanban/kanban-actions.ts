@@ -5,6 +5,12 @@ import { getUserSessionServer } from '../auth/auth-actions';
 import { revalidatePath } from 'next/cache';
 import { slugify } from '@/utils';
 import { notFound } from 'next/navigation';
+import { Board, Task } from '@prisma/client';
+
+export const getUserBoards = async (): Promise<Omit<Board, 'userId'>[]> => {
+	const user = await getUserSessionServer();
+	return await prisma.board.findMany({ where: { userId: user.id }, select: { id: true, name: true } });
+};
 
 export const createBoard = async (boardName: string) => {
 	const user = await getUserSessionServer();
@@ -14,8 +20,20 @@ export const createBoard = async (boardName: string) => {
 			userId: user.id,
 		},
 	});
-	revalidatePath('/kanban');
+	revalidatePath('/kanban/boards');
 	return newBoard;
+};
+
+export const getTaskById = async (taskId: string) => {
+	const task = await prisma.task.findFirst({
+		where: { id: taskId },
+		select: { subtasks: true, title: true, description: true, status: true },
+	});
+	if (!task) {
+		notFound();
+	}
+
+	return task;
 };
 
 export const toggleSubtaskCompleted = async (subtaskId: string, complete: boolean) => {
@@ -27,7 +45,7 @@ export const toggleSubtaskCompleted = async (subtaskId: string, complete: boolea
 	});
 
 	// TODO: This is throwing not found when using in SubtaskToggler client component
-	revalidatePath('/kanban');
+	revalidatePath('/kanban/boards/[boardName]');
 	return subtask;
 };
 

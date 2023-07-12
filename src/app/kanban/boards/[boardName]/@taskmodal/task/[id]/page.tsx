@@ -1,20 +1,11 @@
+import { getTaskById } from '@/actions/kanban/kanban-actions';
 import { Modal, SubtaskToggler } from '@/components';
-import prisma from '@/lib/prisma';
-import { notFound } from 'next/navigation';
 
 interface Props {
 	params: { boardName: string; id: string };
 }
 export default async function TaskByIdModalPage({ params }: Props) {
-	//TODO:create on a separate file getCompleteTask()
-	const task = await prisma.task.findFirst({
-		where: { id: params.id },
-		select: { subtasks: true, title: true, description: true, status: true },
-	});
-	if (!task) {
-		console.log('No se encontro este task ', params.id);
-		notFound();
-	}
+	const task = await getTaskById(params.id);
 	return (
 		<Modal>
 			<h3 className='font-bold text-lg'>{task.title}</h3>

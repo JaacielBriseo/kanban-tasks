@@ -4,6 +4,7 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 import { BoardNameListItem } from './BoardNameListItem';
 import { ThemeSwitch } from './ThemeSwitch';
 import { ValidModalsEnum } from '@/interfaces';
+import Link from 'next/link';
 
 interface Props {
 	boards: {
@@ -23,16 +24,10 @@ export const SelectBoardModal = ({ boards }: Props) => {
 						return <BoardNameListItem isActive={isActive} name={name} key={name} />;
 					})}
 				</ul>
-				<button
-					type='button'
-					className='flex items-center gap-3'
-					onClick={() => {
-						window[ValidModalsEnum.SelectBoardModal].close();
-						window[ValidModalsEnum.AddNewBoardModal].showModal();
-					}}>
+				<Link href={'/kanban/boards/addnewboard'} className='flex items-center gap-3'>
 					<Image src={'/assets/icon-board-purple.svg'} alt='Board Icon' width={16} height={16} />
 					<p className='font-extrabold text-base text-MainPurple'>+ Create new board</p>
-				</button>
+				</Link>
 				<ThemeSwitch />
 			</form>
 			<form method='dialog' className='modal-backdrop'>

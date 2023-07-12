@@ -15,7 +15,7 @@ export const BoardNameListItem = ({ isActive, name }: Props) => {
 					isActive ? 'block' : 'hidden'
 				}`}
 			/>
-			<Link href={`/kanban/${name}`} className='flex items-center gap-5'>
+			<Link href={`/kanban/board/${name}`} className='flex items-center gap-5'>
 				<Image
 					src={isActive ? '/assets/icon-board-white.svg' : '/assets/icon-board.svg'}
 					alt='Board Icon'
