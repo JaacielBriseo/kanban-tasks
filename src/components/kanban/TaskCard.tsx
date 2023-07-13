@@ -1,22 +1,14 @@
 'use client';
-import { useState } from 'react';
-import { ITask } from '@/interfaces';
-import { ViewTaskModal } from './ViewTaskModal';
-import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { ITask } from '@/interfaces';
 
 interface Props {
 	task: ITask;
 	statusOptions: { columnId: string; columnName: string }[];
 }
 export const TaskCard = ({ task, statusOptions }: Props) => {
-	const router = useRouter();
 	const pathname = usePathname();
-	const [isViewTaskModalOpen, setIsViewTaskModalOpen] = useState(false);
-
-	const openModal = () => setIsViewTaskModalOpen(true);
-	const closeModal = () => setIsViewTaskModalOpen(false);
-	// console.log(pathname + '/task/' + task.id);
 
 	return (
 		<>
@@ -28,12 +20,6 @@ export const TaskCard = ({ task, statusOptions }: Props) => {
 					{task.subtasks.filter(sub => sub.isCompleted).length} of {task.subtasks.length} subtasks
 				</p>
 			</Link>
-			{/* <ViewTaskModal
-				statusOptions={statusOptions}
-				task={task}
-				isOpen={isViewTaskModalOpen}
-				closeModalHandler={closeModal}
-			/> */}
 		</>
 	);
 };

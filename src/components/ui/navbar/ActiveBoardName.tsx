@@ -13,7 +13,7 @@ export const ActiveBoardName = () => {
 	return (
 		<div className='flex items-center gap-2 w-full'>
 			<h1 className='text-xl font-bold capitalize truncate dark:text-white'>{label}</h1>
-			<Link href={'/kanban/boards/selectboard'}>
+			<Link href={'/boards/selectboard'}>
 				<Image src={'/assets/icon-chevron-down.svg'} alt='Chevron' width={12} height={12} />
 			</Link>
 		</div>

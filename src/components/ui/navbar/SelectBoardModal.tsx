@@ -24,7 +24,7 @@ export const SelectBoardModal = ({ boards }: Props) => {
 						return <BoardNameListItem isActive={isActive} name={name} key={name} />;
 					})}
 				</ul>
-				<Link href={'/kanban/boards/addnewboard'} className='flex items-center gap-3'>
+				<Link href={'/boards/addnewboard'} className='flex items-center gap-3'>
 					<Image src={'/assets/icon-board-purple.svg'} alt='Board Icon' width={16} height={16} />
 					<p className='font-extrabold text-base text-MainPurple'>+ Create new board</p>
 				</Link>

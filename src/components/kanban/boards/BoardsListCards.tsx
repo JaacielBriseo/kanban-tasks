@@ -16,7 +16,7 @@ export const BoardsListCards = ({ boards }: Props) => {
 					<li
 						key={board.id}
 						className='card w-32 bg-base-100 shadow-xl hover:scale-110 transition duration-300 ease-in-out'>
-						<Link href={`/kanban/boards/${board.name}`}>
+						<Link href={`/boards/${board.name}`}>
 							<div className='card-body flex items-center'>
 								<h3 className='card-title'>{slugify.convertFromSlug(board.name)}</h3>
 							</div>
